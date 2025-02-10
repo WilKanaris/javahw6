@@ -2,64 +2,59 @@ package ru.netology.stats;
 
 public class StatsService {
 
-    public int sumOfSales(long[] sales) {
-        int sum = 0;
+    public long sumOfSales(long[] sales) {
+        long sum = 0;
         for (long sale : sales) {
-            sum += sale;
+            sum = sum + sale;
         }
         return sum;
     }
 
-    public int averageSumOfSales(long[] sales) {
-        int sum = 0;
-        int averageSum = 0;
-        for (long sale : sales) {
-            sum += sale;
-            averageSum = (sum / sales.length);
-        }
-        return averageSum;
+    public long averageSumOfSales(long[] sales) {
+        long sum = sumOfSales(sales);
+        return sum / sales.length;
     }
 
     public int numMonthOfMaxSales(long[] sales) {
         int maxMonth = 0;
-        int index = 0;
+        int month = 0;
         for (long sale : sales) {
             if (sale >= sales[maxMonth]) {
-                maxMonth = index;
+                maxMonth = month;
             }
-            index = index + 1;
+            month++;
         }
         return maxMonth + 1;
     }
 
     public int numMonthOfMinSales(long[] sales) {
         int minMonth = 0;
-        int index = 0;
+        int month = 0;
         for (long sale : sales) {
             if (sale <= sales[minMonth]) {
-                minMonth = index;
+                minMonth = month;
             }
-            index = index + 1;
+            month++;
         }
         return minMonth + 1;
     }
 
-    public int countMonthOfSalesBelowAverage(long[] sales) {
-        int count = 0;
-        int averageSum = averageSumOfSales(sales);
+    public long countMonthOfSalesBelowAverage(long[] sales) {
+        long count = 0;
+        long averageSum = averageSumOfSales(sales);
         for (long sale : sales) {
-            if (sale > averageSum) {
+            if (sale < averageSum) {
                 count++;
             }
         }
         return count;
     }
 
-    public int countMonthOfSalesAboveAverage(long[] sales) {
-        int count = 0;
-        int averageSum = averageSumOfSales(sales);
+    public long countMonthOfSalesAboveAverage(long[] sales) {
+        long count = 0;
+        long averageSum = averageSumOfSales(sales);
         for (long sale : sales) {
-            if (sale < averageSum) {
+            if (sale > averageSum) {
                 count++;
             }
         }
